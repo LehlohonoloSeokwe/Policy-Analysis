@@ -1,0 +1,6 @@
+{
+  "name": "Ospreyn - South African Economic & Regulatory Dashboard",
+  "description": "South African macroeconomic and regulatory policy intelligence dashboard with written analysis by Lehlohonolo Seokwe, MA Political Science.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
