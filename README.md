@@ -1,100 +1,84 @@
-# Ospreyn — South African Economic & Regulatory Intelligence
+# Ospreyn — South African Economy & Regulation (ospreyn.com)
 
-**Author**: **Lehlohonolo Seokwe**, MA Political Science  
-**Specialization**: Economic Policy, Financial Sector Regulation & Public Affairs  
-**Platform**: Production-quality public portfolio dashboard with verified macroeconomic time series and policy analysis.
+**Publisher**: Ospreyn
+**Focus**: Economic policy, financial sector regulation and public affairs
 
----
+A public dashboard of South African macroeconomic indicators with written analysis, a sector view, a policy calendar and policy briefs. Every figure is sourced, and every chart can be checked against its primary publication.
 
-## 1. Executive Overview
+It is educational analysis, not financial, investment or legal advice.
 
-**Ospreyn** is an empirical macroeconomic and regulatory affairs publication. It provides decision-makers in commercial banking, investment management, multilateral institutions, and regulatory bodies with credible, verified data, accurate time-series charting, and structured political economy analysis.
+## What is on the site
 
-### Core Architecture & Design Philosophy
-- **Absolute Data Integrity (Zero Synthetic Hallucination)**: Every metric is retrieved directly from an official primary release or API. Where an estimate or unverified figure exists, it is marked `TO_VERIFY` and listed in `VERIFY.md`.
-- **Separation of Data and Policy Analysis**: Quantitative data is stored strictly in `/public/data/*.json`. Qualitative policy analysis is authored in `/content/*.md`.
-- **Institutional Visual Tone**: Designed in the style of a central bank economic bulletin or think-tank publication. Follows zero-pill discipline, serif display typography, monospace tabular figures (`font-mono tabular-nums`), and full dark/light theme support.
-- **Accessibility**: WCAG 2.1 AA compliant, screen-reader table fallbacks, keyboard navigable dialogs, and non-color-exclusive delta indicators.
+- **Overview**: headline indicators with sparklines, source and date, plus a short written summary of where the economy stands.
+- **Indicators**: GDP growth, CPI inflation, the SARB repo rate, unemployment, the rand and government debt. Each has an interactive chart, a data table, a CSV download, definition notes and a written analysis with sources.
+- **Sectors**: banking, mining, retail and ICT, with the main policy issues in each. GDP-share and employment figures are blank until verified (see `VERIFY.md`).
+- **Calendar**: upcoming Reserve Bank decisions and data releases. Only dates marked confirmed have been checked against the institution's website.
+- **Briefs**: articles and policy briefs written in the admin page, each with a source list.
+- **Admin** (`/admin`): sign in to write articles and update the site text, settings and data.
 
----
+## Tech stack
 
-## 2. Official Data Sources Table
+React 19, TypeScript, Vite, React Router, Tailwind CSS, Recharts, lucide-react and react-markdown. The admin page uses Sveltia CMS. There is no backend or database: content lives in files in this repository, and every save in the admin page is a commit that makes Netlify rebuild the site.
 
-| Indicator | Short Code | Official Institution | Frequency | Terms of Use / License |
-| :--- | :--- | :--- | :--- | :--- |
-| **Real GDP Growth** | `NY.GDP.MKTP.KD.ZG` | World Bank / Statistics South Africa (P0441) | Annual / Quarterly | Open Data (CC-BY 4.0) |
-| **Consumer Price Index (CPI)** | `FP.CPI.TOTL.ZG` | World Bank / Statistics South Africa (P0141) | Annual / Monthly | Open Official Release |
-| **SARB Policy Repo Rate** | `SARB.REPO` | South African Reserve Bank (MPC Statements) | Bi-monthly (6× yr) | Public Domain (SARB Act) |
-| **Unemployment Rate** | `SL.UEM.TOTL.ZS` | World Bank (ILO Model) & Stats SA QLFS (P0211) | Annual / Quarterly | Official Statistics Act |
-| **Exchange Rate (ZAR / USD)** | `PA.NUS.FCRF` | World Bank / SARB Historical Market Rates | Annual / Monthly | IMF IFS Open License |
-| **Central Government Debt** | `GC.DOD.TOTL.GD.ZS` | World Bank / National Treasury Budget Review | Annual | PFMA Public Release |
-| **Sector GDP Contributions** | `Stats SA P0441` | Statistics South Africa | Quarterly | Official Statistics Act |
-| **Policy Calendar** | `SARB / Stats SA` | South African Reserve Bank & Parliament | Continuous | Open Gazette Records |
+## Getting started
 
----
-
-## 3. Tech Stack
-
-- **Framework**: React 18 + TypeScript + Vite
-- **Styling**: Tailwind CSS v4 (`@import "tailwindcss";`) with custom theme tokens
-- **Data Visualisation**: Recharts (Responsive ComposedChart, Line, XAxis, YAxis, ReferenceLine) + custom SVG Sparklines
-- **Icons**: Lucide React
-- **Routing**: React Router DOM (v7) with smooth scroll restoration
-- **Build & Test**: TypeScript (`tsc --noEmit`), Node test runner (`node:test` via `tsx`)
-- **Deployment**: Netlify SPA (`netlify.toml` redirects)
-
----
-
-## 4. Running the Project Locally
-
-### Install Dependencies
 ```bash
 npm install
+npm run dev        # local development (also rebuilds the manual datasets)
+npm run build      # production build
+npm test           # unit and data-integrity tests
+npm run lint       # type-check
 ```
 
-### Run Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Where things live
 
-### Update Data Series via Automated Harvester
-```bash
-npm run data:update
-```
-This fetches the latest time series from the World Bank API, normalizes the records, calculates YoY deltas, and updates `VERIFY.md`.
+| What | Where | Edit in admin? |
+| :--- | :--- | :--- |
+| Articles and briefs | `content/articles/*.md` | Yes |
+| Indicator analysis | `content/analysis/*.yml` | Yes |
+| Overview page text | `content/overview.yml` | Yes |
+| Site name, footer, contact email, About page | `content/site.yml` | Yes |
+| Repo rate, QLFS, calendar, sectors | `content/data/*.yml` | Yes |
+| World Bank datasets (generated) | `public/data/*.json` | No (weekly job) |
+| Data scripts | `scripts/` | No |
+| Verification register | `VERIFY.md` | No |
+| Admin configuration | `public/admin/config.yml` | No |
 
-### Run Unit Tests
-```bash
-npx --yes tsx --test src/utils/calculations.test.ts
-```
+## Using the admin page
 
-### Compile & Build Production Bundle
-```bash
-npm run build
-```
+Go to `/admin` on your site and sign in with GitHub (see `GO-LIVE.md` for the one-time setup).
 
----
+- **Write an article**: Articles and briefs, then New Article. Add a summary, takeaways and sources, write the text, and switch **Draft** off to publish. Drafts never appear on the site.
+- **After a Reserve Bank decision**: Data, then Repo rate, and add one row to the decisions list (period as `YYYY-MM`). The current-year value, change and chart are worked out for you.
+- **After a QLFS release**: Data, then Unemployment (Stats SA QLFS), and add the new quarter.
+- **Edit analysis or the overview text**: open the item and edit the fields.
+- **Calendar**: add events, and tick *confirmed* only after checking the date on the institution's website.
 
-## 5. Pre-Launch Verification Checklist
+Saving creates a commit, and the site updates a minute or two later. If a build fails (for example because of a duplicate or out-of-order period), the live site stays as it was and Netlify shows the reason in the deploy log.
 
-Before deploying or submitting to employers and policy panels, complete this 10-point audit:
+## Keeping the data current
 
-- [x] **1. Zero Data Fabrication**: Confirm no synthetic figures exist. Every number corresponds to a citation in `VERIFY.md`.
-- [x] **2. Units & Dates Visible**: Every metric card and chart displays unit, source, and last updated period.
-- [x] **3. Defintion Divergences Documented**: World Bank modeled unemployment vs Stats SA strict & expanded QLFS definitions are explicitly explained in Definition notes.
-- [x] **4. Color-Blind Accessible Deltas**: Every positive/negative delta includes a directional arrow and text descriptor ("Higher vs prev period" / "Lower vs prev period").
-- [x] **5. Dual-Axis Warning**: Comparative charts display an explicit dual-axis scale caveat to avoid misleading correlations.
-- [x] **6. Accessible Data Tables**: All interactive charts provide a "Data Table" button revealing a semantic HTML table for screen readers and CSV export.
-- [x] **7. No Licensed Market Data**: Zero scraped live JSE share prices or proprietary commercial ticker feeds.
-- [x] **8. Responsive Mobile Viewports**: Test on 390px (mobile) and 1440px (desktop) viewports without horizontal clipping.
-- [x] **9. Netlify SPA Configuration**: Verify `netlify.toml` contains `/*` -> `/index.html` rule so direct URL navigation works on deep indicator routes.
-- [x] **10. Legal & Statutory Disclaimer**: Prominent disclaimer stating analysis is educational and not financial or investment advice.
+- **World Bank series** (GDP, inflation, unemployment model, rand, debt): `npm run data:update` fetches them. A GitHub Actions workflow runs it weekly and opens a pull request, so changes are reviewed before they go live.
+- **Hand-maintained series** (repo rate, QLFS, sectors, calendar): edit them in the admin page. They are rebuilt from `content/data/*.yml` on every build and at the end of the weekly job, so the weekly job never overwrites them.
 
----
+Every dataset records its source, unit, frequency, last period and retrieval date, and the tests fail if any of these are missing.
 
-## 6. Author Contact
+## Rules for this project
 
-**Lehlohonolo Seokwe, MA Political Science**  
-- Email: [seokwe14@gmail.com](mailto:seokwe14@gmail.com)  
-- LinkedIn: [linkedin.com/in/lehlohonolo-seokwe-66779b207/](https://www.linkedin.com/in/lehlohonolo-seokwe-66779b207/)
+1. Never publish a number without a source.
+2. Mark anything unchecked `TO_VERIFY` and list it in `VERIFY.md`.
+3. Keep data (in JSON) separate from analysis (in markdown).
+4. Do not scrape licensed market data such as JSE prices.
+5. Do not claim accessibility or performance standards until they have been tested.
+
+## Before sharing widely
+
+- [ ] Work through section 3 of `VERIFY.md`.
+- [ ] Update debt, deficit and growth figures from the October 2026 MTBPS.
+- [ ] Run Lighthouse and an accessibility checker, then record the results.
+- [ ] Test on a phone-width viewport.
+- [ ] Add sources to the two draft articles before switching them to published.
+
+## Deployment
+
+Netlify, configured in `netlify.toml`. See `GO-LIVE.md` for the full steps, including how to retire the old site safely.

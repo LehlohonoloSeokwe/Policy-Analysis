@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Admin CMS bundle is copied from node_modules at build time
+public/admin/cms/
