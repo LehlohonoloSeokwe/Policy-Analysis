@@ -6,7 +6,7 @@
   "frequency": "Annual",
   "sourceName": "South African Reserve Bank (SARB)",
   "sourceUrl": "https://www.resbank.co.za/en/home/what-we-do/monetary-policy",
-  "retrievalDate": "2026-10-29",
+  "retrievalDate": "2026-11-02",
   "lastPeriod": "2024",
   "latestValue": 7.75,
   "previousValue": 8.25,

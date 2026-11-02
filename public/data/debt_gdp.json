@@ -6,7 +6,7 @@
   "frequency": "Annual",
   "sourceName": "World Bank / National Treasury Budget Review",
   "sourceUrl": "https://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS?locations=ZA",
-  "retrievalDate": "2026-10-29",
+  "retrievalDate": "2026-11-02",
   "lastPeriod": "2024",
   "latestValue": 82.76,
   "previousValue": 79.41,

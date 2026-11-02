@@ -6,7 +6,7 @@
   "frequency": "Annual",
   "sourceName": "World Bank / South African Reserve Bank",
   "sourceUrl": "https://data.worldbank.org/indicator/PA.NUS.FCRF?locations=ZA",
-  "retrievalDate": "2026-10-29",
+  "retrievalDate": "2026-11-02",
   "lastPeriod": "2025",
   "latestValue": 17.89,
   "previousValue": 18.33,

@@ -6,7 +6,7 @@
   "frequency": "Annual",
   "sourceName": "World Bank / Statistics South Africa",
   "sourceUrl": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG?locations=ZA",
-  "retrievalDate": "2026-10-29",
+  "retrievalDate": "2026-11-02",
   "lastPeriod": "2025",
   "latestValue": 1.11,
   "previousValue": 0.53,
