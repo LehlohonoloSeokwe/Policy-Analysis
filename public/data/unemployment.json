@@ -6,7 +6,7 @@
   "frequency": "Annual",
   "sourceName": "World Bank (ILO Modeled Estimate) & Stats SA QLFS",
   "sourceUrl": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=ZA",
-  "retrievalDate": "2026-10-29",
+  "retrievalDate": "2026-11-09",
   "lastPeriod": "2025",
   "latestValue": 32.39,
   "previousValue": 32.28,

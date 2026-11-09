@@ -8,7 +8,7 @@
     "gdpSource": "Stats SA GDP P0441 (Finance, Real Estate & Business Services)",
     "gdpSourceUrl": "https://www.statssa.gov.za/?page_id=1854&PPN=P0441",
     "lastPeriod": "2024-Q3",
-    "retrievalDate": "2026-10-29",
+    "retrievalDate": "2026-11-09",
     "keyRegulators": [
       "Prudential Authority (PA) — SARB",
       "Financial Sector Conduct Authority (FSCA)",
@@ -71,7 +71,7 @@
     "gdpSource": "Stats SA GDP P0441 (Mining and Quarrying)",
     "gdpSourceUrl": "https://www.statssa.gov.za/?page_id=1854&PPN=P0441",
     "lastPeriod": "2024-Q3",
-    "retrievalDate": "2026-10-29",
+    "retrievalDate": "2026-11-09",
     "keyRegulators": [
       "Department of Mineral and Petroleum Resources (DMPR)",
       "Mine Health and Safety Inspectorate",
@@ -126,7 +126,7 @@
     "gdpSource": "Stats SA GDP P0441 (Wholesale, retail & motor trade)",
     "gdpSourceUrl": "https://www.statssa.gov.za/?page_id=1854&PPN=P0441",
     "lastPeriod": "2024-Q3",
-    "retrievalDate": "2026-10-29",
+    "retrievalDate": "2026-11-09",
     "keyRegulators": [
       "Competition Commission South Africa (CCSA)",
       "National Consumer Commission (NCC)",
@@ -180,7 +180,7 @@
     "gdpSource": "Stats SA GDP P0441 (Transport, storage & communication)",
     "gdpSourceUrl": "https://www.statssa.gov.za/?page_id=1854&PPN=P0441",
     "lastPeriod": "2024-Q3",
-    "retrievalDate": "2026-10-29",
+    "retrievalDate": "2026-11-09",
     "keyRegulators": [
       "Independent Communications Authority of South Africa (ICASA)",
       "Department of Communications and Digital Technologies (DCDT)",
